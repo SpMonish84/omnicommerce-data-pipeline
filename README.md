@@ -111,7 +111,3 @@ All queries are located in the `/sql` folder:
 - `order_full_details.sql` - Complete order information
 - `complete_order_analysis.sql` - Comprehensive analysis joining all tables
 
-## License
-
-This project is open source and available for educational purposes.
-
