@@ -1,0 +1,60 @@
+================================================================================
+ENTITY-RELATIONSHIP DIAGRAM - E-COMMERCE DATABASE
+================================================================================
+
++-- CUSTOMERS -------------------------------------------------------------+
+|  * customer_id                    INTEGER         [PK]
+|  * name                           TEXT            NOT NULL
+|  * email                          TEXT            NOT NULL
+|  * gender                         TEXT           
+|  * signup_date                    DATE           
+|  * city                           TEXT           
+|  * country                        TEXT           
++------------------------------------------------------------------------------+
+
++-- ORDER_ITEMS -----------------------------------------------------------+
+|  * order_item_id                  INTEGER         [PK]
+|  * order_id                       INTEGER         [FK -> orders] NOT NULL
+|  * product_id                     INTEGER         [FK -> products] NOT NULL
+|  * quantity                       INTEGER         NOT NULL
+|  * subtotal                       REAL            NOT NULL
++------------------------------------------------------------------------------+
+
++-- ORDERS ----------------------------------------------------------------+
+|  * order_id                       INTEGER         [PK]
+|  * customer_id                    INTEGER         [FK -> customers] NOT NULL
+|  * order_date                     TEXT            NOT NULL
+|  * status                         TEXT           
++------------------------------------------------------------------------------+
+
++-- PAYMENTS --------------------------------------------------------------+
+|  * payment_id                     INTEGER         [PK]
+|  * order_id                       INTEGER         [FK -> orders] NOT NULL
+|  * amount                         REAL            NOT NULL
+|  * payment_method                 TEXT           
+|  * payment_status                 TEXT           
++------------------------------------------------------------------------------+
+
++-- PRODUCTS --------------------------------------------------------------+
+|  * product_id                     INTEGER         [PK]
+|  * name                           TEXT            NOT NULL
+|  * category                       TEXT           
+|  * price                          REAL            NOT NULL
+|  * stock                          INTEGER         NOT NULL
++------------------------------------------------------------------------------+
+
+================================================================================
+RELATIONSHIPS
+================================================================================
+
+order_items.product_id -> products.product_id
+order_items.order_id -> orders.order_id
+orders.customer_id -> customers.customer_id
+payments.order_id -> orders.order_id
+
+================================================================================
+LEGEND
+================================================================================
+[PK] = Primary Key
+[FK -> table] = Foreign Key (references table.column)
+NOT NULL = Column cannot be null
